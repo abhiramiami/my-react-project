@@ -1,0 +1,202 @@
+.first{
+    font-size:120%;
+    font-weight:bold;
+    
+    color:#08356e;
+   background-color: aquamarine;
+   
+    height:auto;
+  
+    
+    
+}
+.one{
+ 
+   bottom:52%;
+  
+   position:absolute; 
+   padding-left:12%;
+   color:#08356e;
+   border-radius: 0%;
+   border-color: none;
+   font-size:small;
+   position:absolute;
+   margin-left:28%;
+}
+
+.two{
+    margin-left:28%;
+    top:55%;
+    background-color:rgb(255, 254, 254);
+    padding-left: 2%;
+    position:absolute;
+    border-radius:0%;
+    
+}
+.three{
+    margin-left:28%;
+    top:69%;
+    background-color:rgb(255, 254, 254);
+    padding-left:2%;
+    position:absolute;
+    border-radius:0%;
+    
+}
+.four{
+    margin-left:28%;
+    top:80%;
+    background-color:rgb(255, 254, 254);
+    padding-left:2%;
+    position: absolute;
+    border-radius:0%;
+}
+.five{
+    margin-left:28%;
+    top:92%;
+    background-color:rgb(255, 254, 254);
+    padding-left:2%;
+    position: absolute;
+    border-radius:0%;
+    
+}
+.six{
+    margin-left:28%;
+    top:105%;
+    background-color:rgb(255, 254, 254);
+    padding-left:2%;
+    position: absolute;
+    border-radius:0%;
+    
+}
+.seven{
+    margin-left:28%;
+    top:870px;
+    background-color:rgb(255, 254, 254);
+    padding-left:2%;
+    position: absolute;
+    border-radius:0%;
+
+}
+.male{
+    margin-left:22%;
+    top:128.5%;
+    padding-left:6%;
+    position: absolute; 
+}
+.nine{
+    margin-left:32%;
+    top:128.5%;
+    background-color:rgb(255, 254, 254);
+    padding-left:-12%;
+    position: absolute;
+    width:6%;
+    height:3%;
+    border-radius:0%;
+
+}
+.female{
+    margin-left:34%;
+    top: 128.5%;
+    padding-left:7%;
+    position: absolute; 
+}
+.ten{
+    margin-left:46%;
+    top: 128.5%;
+    background-color:rgb(255, 254, 254);
+    padding-left:-10%;
+    position: absolute;
+    width:6%;
+    height:3%;
+}
+.other{
+    margin-left:46%;
+    top:128.5%;
+    padding-left:7%;
+    position: absolute;  
+}
+.eleven{
+    margin-left:58%;
+    top:128.5%;
+    background-color:rgb(255, 254, 254);
+    padding-left:7%;
+    position: absolute;
+    width:6%;
+    height:3%;
+}
+.but{
+    padding-left:1.5%;
+    margin-left:34%;
+    padding-bottom:2%;
+    background-color:#08356e;
+    border-radius:20%;
+   
+
+    
+   
+    position: absolute;
+    margin-top: -2%;
+}
+.sub{
+    font-size:118%;
+    margin-left:-28%;
+    color:aliceblue;
+    text-align: center;
+    margin-top:10px;
+   
+    
+    
+    
+}
+.std{
+    font-size:200%;
+   
+    font-weight: "bold";
+    height:"4rem";
+    width:"4rem";
+    color:#0c2a4c;
+    padding-right:28px;
+    padding-bottom: 300px;
+}
+.fn{
+    margin-left:20%;
+}
+.ln{
+    margin-left:20%;
+}
+.en{
+    margin-left:20%;
+}
+.pd{
+    margin-left:20%;
+}
+.cp{
+    margin-left:20%;
+}
+.dob{
+    margin-left:20%;
+    margin-top:1%;;
+}
+.email{
+    margin-left:7.3%;
+    margin-top:1%;;
+}
+.gender{
+    margin-left:19%;
+    margin-top:6%;;
+}
+.file{
+    margin-left:20%;
+    margin-top:1%;
+}
+.icon{
+    width:32%;
+    height:55%;
+    margin-top: -100px;
+    
+
+
+}
+.fil{
+    margin: left 30px;
+}

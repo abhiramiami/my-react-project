@@ -1,0 +1,172 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background:#08356e;
+  padding: 20px 80px;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.06);
+  height:65px;
+  width:100vw;
+  position:fixed;
+  top:0;
+  z-index:1;
+
+}
+.ouy{
+  color:white;
+}
+.hidden{
+  display: none;
+}
+.show{
+  display: block;
+}
+.nav-btn{
+  width:auto;
+  color:#fff;
+  z-index: 1;
+ 
+
+
+ 
+  padding: .5rem .5rem;
+}
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#navbar li {
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+}
+
+#navbar li a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Times New Roman", Times, serif;
+  transition: 0.3s ease-in-out;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+  color:white;
+}
+
+#navbar li a:hover::after,
+#navbar li a.active::after {
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+}
+
+#mobile {
+  display: none;
+}
+
+#mobile i {
+  color: #fff;
+  align-items: center;
+}
+
+@media screen and (max-width: 769px) {
+  #navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 90px;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background: #033a6a;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+    padding: 40px 0 0 10px;
+    transition: 0.3s ease-in-out;
+  }
+
+  #navbar.active {
+    right: 0px;
+  }
+
+  #navbar li {
+    margin-bottom: 25px;
+  }
+
+  #mobile {
+    display: block;
+  }
+
+  #mobile i {
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+.one {
+ 
+  color: #08356e;
+  text-align: left;
+  bottom: 100px;
+  position: fixed;
+  padding-left: 100px;
+}
+
+.two {
+  font-size: 50px;
+  color: #1f6ed4;
+  text-align: bottom;
+
+  bottom: 90px;
+  position: fixed;
+  text-align: center;
+  justify-content: center;
+  padding-left: 250px;
+
+}
+
+.three {
+  font-size: 400px;
+  color: #f80a0a;
+  text-align: left;
+  text-align:center;
+  bottom: 98px;
+  position: fixed;
+  padding-left: 410px;
+}
+
+.onee
+{ font-size: 100px;
+  color: #08356e;
+  text-align: left;
+
+  bottom: 235px;
+  position: fixed;
+  padding-left: 578px;
+}
+.four {
+  font-size: 18px;
+  color: rgb(133, 24, 24);
+  text-align: bottom;
+  bottom: 500px;
+  position: fixed;
+  text-align: left;
+  padding-left: 20px;
+
+}
+.login{
+  color:#fff;
+}
+.navcolr{
+  background-color: #1f6ed4;
+}
