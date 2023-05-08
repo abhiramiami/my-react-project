@@ -394,72 +394,9 @@ function exam2() {
 
       {/*  */}
 
-      <div
-        style={{
-          backgroundColor: "rgb(236,237,243",
-          height: "6.5rem",
-          width: "auto",
-          marginTop: "1rem",
-        }}
-      >
-        <h1
-          style={{
-            fontSize: "1rem",
-            marginLeft: "12rem",
-            paddingTop: "1rem",
-            color: "darkblue",
-          }}
-        >
-          {" "}
-          SELECT TOPIC
-        </h1>
-        <div className="option1">
-          <select
-            className="custom-select"
-            style={{
-              width: "20rem",
-              height: "2.5rem",
-              marginLeft: "12rem",
-              color: "darkblue",
-              fontSize: "1.1rem",
-              position: "absolute",
-            }}
-          >
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>
-          </select>
-        </div>
-      </div>
-
       {/*  */}
       <div>
-        <Link to="/Manually2">
+        <Link to="/cssExam/Manually2">
           <button
             style={{
               width: "6rem",

@@ -15,7 +15,7 @@ import Studentt from "./components/Studentreg";
 import Invreg from "./components/Invreg";
 import Dashboard1 from "./components/Dashboard1";
 import Forgot from "./components/Forgot";
-import Examcreation from "./components/Examcreation";
+import Examcreation from "./components/Exam/Examcreation";
 import Automatically1 from "./components/Automatically1";
 import Automatically2 from "./components/Automatically2";
 import Automatically3 from "./components/Automatically3";
@@ -37,6 +37,24 @@ function RouterWrapper() {
         path="/Invigilatorlogin"
         element={<Invigilator></Invigilator>}
       ></Route>
+      <Route path={`/:examName`}>
+        <Route
+          path={`Automatically1`}
+          element={<Automatically1></Automatically1>}
+        />
+        <Route
+          path={`Automatically2`}
+          element={<Automatically2></Automatically2>}
+        />
+        <Route
+          path="Automatically3"
+          element={<Automatically3></Automatically3>}
+        ></Route>
+        <Route path="Manually" element={<Manually></Manually>}></Route>
+        <Route path="Manually2" element={<Manually2></Manually2>}></Route>
+        <Route path="Manually3" element={<Manually3></Manually3>}></Route>
+        <Route path="Manuallysec" element={<Manuallysec></Manuallysec>}></Route>
+      </Route>
 
       <Route path="/studentlogin" element={<Student></Student>}></Route>
       <Route path="/Studentreg" element={<Studentt></Studentt>}></Route>
@@ -52,18 +70,18 @@ function RouterWrapper() {
         path="/Examcreation"
         element={<Examcreation></Examcreation>}
       ></Route>
-      <Route
+      {/* <Route
         path="/Automatically1"
         element={<Automatically1></Automatically1>}
-      ></Route>
-      <Route
+      ></Route> */}
+      {/* <Route
         path="/Automatically2"
         element={<Automatically2></Automatically2>}
-      ></Route>
-      <Route
+      ></Route> */}
+      {/* <Route
         path="/Automatically3"
         element={<Automatically3></Automatically3>}
-      ></Route>
+      ></Route> */}
 
       <Route path="/Autosection" element={<Autosection></Autosection>}></Route>
       <Route
@@ -71,10 +89,10 @@ function RouterWrapper() {
         element={<Autosection2></Autosection2>}
       ></Route>
       <Route path="/resend" element={<Resend></Resend>}></Route>
-      <Route path="/Manually" element={<Manually></Manually>}></Route>
+      {/* <Route path="/Manually" element={<Manually></Manually>}></Route>
       <Route path="/Manually2" element={<Manually2></Manually2>}></Route>
-      <Route path="/Manually3" element={<Manually3></Manually3>}></Route>
-      <Route path="/Manuallysec" element={<Manuallysec></Manuallysec>}></Route>
+      <Route path="/Manually3" element={<Manually3></Manually3>}></Route> */}
+      {/* <Route path="/Manuallysec" element={<Manuallysec></Manuallysec>}></Route> */}
     </Routes>
   );
 }

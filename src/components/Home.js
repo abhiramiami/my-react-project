@@ -9,7 +9,7 @@ export default class Home extends Component {
           <div className="opt">
             ONLINE
             <br />
-            EXAMINATIONS
+            EXAMINATION
           </div>
           <div className="iv1">
             <Icon className="icc" icon="simple-icons:e" />

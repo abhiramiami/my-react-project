@@ -1,7 +1,5 @@
-import "../App.css";
-import { Icon } from "@iconify/react";
+import "../../App.css";
 import "./Examcreation.css";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +12,7 @@ function Exam() {
   };
   const handleSubmit = (e) => {
     console.log("button clicked");
-    navigate(`/${type}`);
+    navigate(`/cssExam/${type}`);
   };
   return (
     <div>

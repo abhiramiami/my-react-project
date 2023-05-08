@@ -16,12 +16,12 @@ class AboutUs extends Component {
           MANUALLY CREATION
         </div>
         <div className="stf">
-          <Link to="/Manually3">
+          <Link to="/cssExam/Manually3">
             <button className="bOT">SET NOTIFICATION</button>
           </Link>
         </div>
         <div className="stf">
-          <Link to="/Manuallysec">
+          <Link to="/cssExam/Manuallysec">
             <button className="bOT">ADD SECTION</button>
           </Link>
         </div>

@@ -1,5 +1,4 @@
 import "../App.css";
-import { Icon } from "@iconify/react";
 
 import { Link } from "react-router-dom";
 
@@ -459,7 +458,7 @@ function exam1() {
 
       {/*  */}
       <div>
-        <Link to="/Automatically2">
+        <Link to="/cssExam/Automatically2">
           <button
             style={{
               width: "6rem",
