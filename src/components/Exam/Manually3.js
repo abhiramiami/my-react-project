@@ -1,6 +1,5 @@
-import "../App.css";
-import { Icon } from "@iconify/react";
 
+import "../../App.css";
 import { Link } from "react-router-dom";
 
 function exam1() {

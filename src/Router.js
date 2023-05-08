@@ -23,10 +23,10 @@ import Autosection from "./components/Autosection";
 import Autosection2 from "./components/Autosection2";
 import Resend from "./components/Resend";
 import Reset from "./components/Reset";
-import Manually from "./components/Manually";
-import Manually2 from "./components/Manually2";
-import Manually3 from "./components/Manually3";
-import Manuallysec from "./components/Manuallysec";
+import Manually from "./components/Exam/Manually";
+import Manually2 from "./components/Exam/Manually2";
+import Manually3 from "./components/Exam/Manually3";
+import Manuallysec from "./components/Exam/Manuallysec";
 
 function RouterWrapper() {
   return (

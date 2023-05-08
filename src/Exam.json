@@ -1,0 +1,44 @@
+{
+    "subjectData": {
+        "subjectName": "Bcs ComputerScience",
+        "subTopics": [{
+                "name": "Python"
+            },
+            {
+                "name": "java"
+            }, {
+                "name": "anroid"
+            }
+        ]
+    },
+    "examData": {
+        "id": "1",
+        "name": "PSC Exam",
+        "subjectName": "Bcs ComputerScience",
+        "question_type": "Manually",
+        "subtopics": {
+            "name": "Android"
+        },
+        "weightage": 100,
+        "passmark": 60,
+        "exam_date": "",
+        "notificatio_type": "email",
+        "notification_no": 3,
+        "no_of_section": 3,
+        "sections": [{
+                "name": "1",
+                "type": "Fill In The Blanks",
+                "weightage": 40
+            },
+            {
+                "name": "2",
+                "type": "MultipleChoice",
+                "weightage": 40
+            }
+        ]
+
+
+
+
+    }
+}

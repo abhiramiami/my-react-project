@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Component } from "react";
 import { Icon } from "@iconify/react";
-import "../App.css";
-import "./Dashboard.css";
+import "../../App.css";
+import "../Dashboard.css";
 
 class AboutUs extends Component {
   state = { clicked: false };
