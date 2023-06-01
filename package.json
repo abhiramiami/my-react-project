@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "@iconify/react": "^4.1.0"
+  },
+  "dependencies": {
+    "face-api.js": "^0.22.2",
+    "iconify": "^1.4.0",
+    "react-bootstrap-sweetalert": "^5.2.0",
+    "react-hook-form": "^7.43.9",
+    "sweetalert-react": "^0.4.11",
+    "sweetalert2": "^11.7.5"
+  }
+}
