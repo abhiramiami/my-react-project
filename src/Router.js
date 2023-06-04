@@ -15,7 +15,7 @@ import Studentreg from "./components/Studentreg";
 import Invreg from "./components/Invreg";
 import Dashboard1 from "./components/Dashboard1";
 import Forgot from "./components/Forgot";
-import Examcreation from "./components/Examcreation";
+import Examcreation from "./components/Exam/Examcreation";
 import Automatically1 from "./components/Automatically1";
 import Automatically2 from "./components/Automatically2";
 import Automatically3 from "./components/Automatically3";
@@ -23,10 +23,10 @@ import Autosection from "./components/Autosection";
 import Autosection2 from "./components/Autosection2";
 import Resend from "./components/Resend";
 import Reset from "./components/Reset";
-import Manually from "./components/Manually";
-import Manually2 from "./components/Manually2";
-import Manually3 from "./components/Manually3";
-import Manuallysec from "./components/Manuallysec";
+import Manually from "./components/Exam/Manually";
+import Manually2 from "./components/Exam/Manually2";
+import Manually3 from "./components/Exam/Manually3";
+import Manuallysec from "./components/Exam/Manuallysec";
 import Result from "./components/Result";
 import Admin from "./components/Admin";
 import Dashboard3 from "./components/Dashboard3";
@@ -73,18 +73,18 @@ function RouterWrapper() {
         path="/Examcreation"
         element={<Examcreation></Examcreation>}
       ></Route>
-      <Route
+      {/* <Route
         path="/Automatically1"
         element={<Automatically1></Automatically1>}
-      ></Route>
-      <Route
+      ></Route> */}
+      {/* <Route
         path="/Automatically2"
         element={<Automatically2></Automatically2>}
-      ></Route>
-      <Route
+      ></Route> */}
+      {/* <Route
         path="/Automatically3"
         element={<Automatically3></Automatically3>}
-      ></Route>
+      ></Route> */}
 
       <Route path="/Autosection" element={<Autosection></Autosection>}></Route>
       <Route

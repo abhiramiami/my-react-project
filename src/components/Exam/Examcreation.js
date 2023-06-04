@@ -1,6 +1,5 @@
 import { Icon } from "@iconify/react";
 import "./Examcreation.css";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, useFormik } from "formik";
@@ -17,7 +16,7 @@ function Exam() {
 
   const handleSubmit = (e) => {
     console.log("button clicked");
-    navigate(`/${type}`);
+    navigate(`/cssExam/${type}`);
   };
 
   const initialValues = {

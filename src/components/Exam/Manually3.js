@@ -1,6 +1,7 @@
 // import "../App.css";
 import { Icon } from "@iconify/react";
 
+import "../../App.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

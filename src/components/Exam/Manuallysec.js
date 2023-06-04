@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./Manuallysec.css";
+import "../Manuallysec.css";
 
 function Create() {
   const navigate = useNavigate();
