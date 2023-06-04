@@ -1,0 +1,49 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  margin: 1.5rem;
+}
+
+.dashboard-title {
+  font-size: 34px;
+  font-weight: bold;
+  color: darkblue;
+  text-align: center;
+  margin-left: -55rem;
+  margin-top: 3rem;
+}
+
+.dashboard-button {
+  width:20rem;
+  height: 3rem;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: darkblue;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: -20rem;
+  margin-top: 5rem;
+}
+
+.dashboard-button:hover {
+  background-color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-button {
+    width: 100%;
+    margin: 2rem auto;
+  }
+  .dashboard-title{
+    margin-left: 5rem;
+  }
+}

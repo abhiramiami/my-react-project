@@ -1,0 +1,93 @@
+.main5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .align-centerr5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -33rem;
+    margin-top: -15rem;
+  }
+  
+  .card5 {
+    height: 15rem;
+    width: 22rem;
+    padding: 2rem;
+    border-radius: 10%;
+    margin-top: 20%;
+    justify-self: center;
+    background-color: rgb(236, 237, 243);
+  }
+  
+  .card h4 {
+    color: darkblue;
+    margin-left: 5rem;
+  }
+  
+  .valid {
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 1rem;
+  }
+  
+  .countdown-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .countdown-text p {
+    color: darkblue;
+    margin: 0;
+  }
+  
+  .resend-btn {
+    color: #ff5630;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .resend-btn:disabled {
+    color: #dfe3e8;
+    cursor: not-allowed;
+  }
+  
+  .submit-btn {
+    color: darkblue;
+    margin-top: 1rem;
+    height: 2rem;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submit-btn:disabled {
+    cursor: not-allowed;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .card {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10%;
+    }
+  
+    .card h4 {
+      margin-left: 2rem;
+    }
+  }
+  

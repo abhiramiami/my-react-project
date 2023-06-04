@@ -1,11 +1,29 @@
+
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useFormik, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import "./Resend.css";
 
 function App() {
   const [otp, setOtp] = useState("");
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(30);
-
+  const initialvalues = {
+    OTP: "",
+  };
+  const validationSchema = Yup.object().shape({
+    OTP: Yup.string().required("OTP IS REQUIRED"),
+  });
+  const formik = useFormik({
+    initialValues: {
+      OTP: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
   useEffect(() => {
     const interval = setInterval(() => {
       if (seconds > 0) {
@@ -33,45 +51,44 @@ function App() {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          backgroundColor: "rgb(236,237,243)",
-          marginLeft: "35rem",
-          height: "20rem",
-          width: "22rem",
-          marginTop: "12rem",
-          borderRadius: "10%",
-        }}
-      >
+    <div className="main5">
+      <form className="align-centerr5" onSubmit={formik.handleSubmit}>
         <div
+          className="card5"
           style={{
-            padding: "4rem 2rem",
-            marginLeft: "3rem",
+            height: "15rem",
+            width: "22rem",
+            padding: "2rem 2rem",
             borderRadius: "10%",
             marginTop: "20%",
-            color: "darkblue",
+            marginLeft: "35rem",
+            justifySelf: "center",
+            backgroundColor: "rgb(236,237,243)",
           }}
         >
-          <h4>Verify OTP</h4>
+          <h4 style={{ color: "darkblue", marginLeft: "5rem" }}>Verify OTP</h4>
 
           <input
+            style={{ borderRadius: "2rem" }}
             className="valid"
             placeholder="Enter OTP"
-            value={otp}
-            onChange={({ target }) => {
-              setOtp(target.value);
-            }}
+            name="OTP"
+            onChange={formik.handleChange}
+            value={formik.values.OTP}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.OTP && formik.errors.OTP ? (
+            <div style={{ color: "red" }}>{formik.errors.OTP}</div>
+          ) : null}
 
-          <div>
+          <div className="countdown-text">
             {seconds > 0 || minutes > 0 ? (
-              <p>
+              <p style={{ color: "darkblue" }}>
                 Time Remaining: {minutes < 10 ? `0${minutes}` : minutes}:
                 {seconds < 10 ? `0${seconds}` : seconds}
               </p>
             ) : (
-              <p>Didn't recieve code?</p>
+              <p style={{ color: "darkblue" }}>Didn't recieve code?</p>
             )}
 
             <button
@@ -87,19 +104,22 @@ function App() {
           <Link to="/Reset">
             <button
               style={{
-                backgroundColor: "lightgray",
-                height: "2.5rem",
-                width: "5rem",
-                borderRadius: "5rem",
+                color: "darkblue",
+
+                marginLeft: "5rem",
+                height: "2rem",
               }}
+              type="submit"
+              className="submit-btn"
             >
               SUBMIT
             </button>
           </Link>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
 
 export default App;
+

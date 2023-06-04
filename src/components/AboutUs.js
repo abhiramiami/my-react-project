@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Component } from "react";
 import { Icon } from "@iconify/react";
-import "../App.css";
+import "./Aboutus.css"; // Create a separate CSS file for AboutUs component
 
 class AboutUs extends Component {
   state = { clicked: false };
@@ -11,36 +11,12 @@ class AboutUs extends Component {
   render() {
     return (
       <>
-        <div className="main1">
-          <div className="align-center">
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                marginLeft: "100rem",
-                marginBottom: "10rem",
-                position: " fixed",
-              }}
-            >
-              <div
-                style={{
-                  width: "30rem",
-                  backgroundColor: "rgb(236,237,243",
-                  padding: "5rem 3rem",
-                  height: "auto",
-                  display: "flex",
-                  flexDirection: "column",
-                  borderRadius: "10%",
-                }}
-              >
-                <h1
-                  style={{ marginTop: "0rem", marginLeft: "5rem" }}
-                  className="font-link"
-                >
-                  ABOUT US
-                </h1>
-                <div className="input-container">
+        <div className="main10">
+          <div className="align-center10">
+            <div className="container10">
+              <div className="card10">
+                <h1 className="font-link10">ABOUT US</h1>
+                <div className="input-container10">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
@@ -49,16 +25,8 @@ class AboutUs extends Component {
                     dictumst. Sollicitudin aliquam ultrices sagittis orci.
                   </p>
                 </div>
-
                 <Link to="/">
-                  <Icon
-                    style={{
-                      height: "2rem",
-                      width: "2rem",
-                      marginLeft: "10rem",
-                    }}
-                    icon="mdi:arrow-back-circle"
-                  />{" "}
+                  <Icon className="back-icon" icon="mdi:arrow-back-circle" />
                 </Link>
               </div>
             </div>

@@ -1,8 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Component } from "react";
 import { Icon } from "@iconify/react";
-import "../App.css";
-import "./Dashboard.css";
 
 class AboutUs extends Component {
   state = { clicked: false };
@@ -12,12 +10,50 @@ class AboutUs extends Component {
   render() {
     return (
       <>
-        <div className="stdr">STUDENT DASHBOARD</div>
-        <div className="stf">
-          <button className="bOT">ACTIVE EXAMS</button>
+        <div
+          style={{
+            marginLeft: "-25rem",
+            fontWeight: "bold",
+            fontSize: "2rem",
+            color: "darkblue",
+            marginTop: "3rem",
+          }}
+        >
+          STUDENT DASHBOARD
         </div>
-        <div className="stf">
-          <button className="bOT">RESULTS</button>
+        <div>
+          <Link to="/Activeexam">
+            <button
+              style={{
+                marginLeft: "-22rem",
+                width: "20rem",
+                height: "3rem",
+                color: "white",
+                backgroundColor: "darkblue",
+                marginTop: "5rem",
+              }}
+            >
+              ACTIVE EXAMS
+            </button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/Result12">
+            <button
+              style={{
+                marginLeft: "-22rem",
+                width: "20rem",
+
+                height: "3rem",
+                color: "white",
+                marginLeft: "-22rem",
+                backgroundColor: "darkblue",
+                marginTop: "5rem",
+              }}
+            >
+              RESULT
+            </button>
+          </Link>
         </div>
       </>
     );

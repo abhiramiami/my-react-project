@@ -1,25 +1,28 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Component } from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import "../App.css";
-import "./Dashboard.css";
+import "./AboutUsStyles.css";
 
 class AboutUs extends Component {
   state = { clicked: false };
+
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
   };
+
   render() {
     return (
       <>
-        <div className="stdr">INVIGILATOR DASHBOARD</div>
-        <div className="stf">
+        <div className="dashboard-title">INVIGILATOR DASHBOARD</div>
+        <div>
           <Link to="/Examcreation">
-            <button className="bOT">EXAM CREATION</button>
+            <button className="dashboard-button">EXAM CREATION</button>
           </Link>
         </div>
-        <div className="stf">
-          <button className="bOT">EVALUATION</button>
+        <div>
+          <Link to="/Evaluation">
+            <button className="dashboard-button">EVALUATION</button>
+          </Link>
         </div>
       </>
     );

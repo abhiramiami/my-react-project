@@ -1,0 +1,66 @@
+.myapp {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .audio,
+  .video {
+    margin-top: 20px;
+  }
+  
+  label {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  .appvide {
+    position: relative;
+    
+    /* margin: 20px auto; */
+  }
+  
+  .appcanvas {
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+
+    /* background-color: green; */
+  }
+ 
+  
+  .myapp > div {
+    margin-bottom: 20px;
+  }
+  
+  .in-progress-page {
+    margin-top: 50px;
+  }
+  
+  .remaining-time {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .detected-faces {
+    /* margin-top: 20px; */
+    font-size: 16px;
+  }
+  
+  .detected-face-item {
+    margin-bottom: 10px;
+  }
+  

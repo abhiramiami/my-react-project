@@ -1,0 +1,40 @@
+.dashboard-title3 {
+    margin-left: -25rem;
+    font-weight: bold;
+    font-size: 2rem;
+    color: darkblue;
+    margin-top: 3rem;
+  }
+  
+  .button-container3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dashboard-button3 {
+    width: 20rem;
+    height: 3rem;
+    color: white;
+    background-color: darkblue;
+    margin-top: 5rem;
+    margin-right: 65rem;
+  }
+  @media (max-width: 600px) {
+    .dashboard-title3 {
+      margin-left: -2rem;
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+    }
+  
+    .button-container3 {
+      margin-top: 2rem;
+    }
+  
+    .dashboard-button3 {
+      width: 15rem;
+      height: 2.5rem;
+      margin-top: 3rem;
+      margin-right: 0;
+    }
+  }

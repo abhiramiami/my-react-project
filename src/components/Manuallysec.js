@@ -1,340 +1,138 @@
-import "../App.css";
 import { Icon } from "@iconify/react";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "./Manuallysec.css";
 
 function Create() {
+  const navigate = useNavigate();
   const [no_of_section, set_section] = useState(1);
   const maparray = new Array(+no_of_section);
+  const [selectedSections, setSelectedSections] = useState(
+    Array.from({ length: +no_of_section }, () => ({
+      name: "",
+      questions: 1,
+      weightage: "",
+    }))
+  );
+  const [validationError, setValidationError] = useState(false);
+
   const handleChange = (e) => {
     set_section(e.target.value);
+    setSelectedSections(
+      Array.from({ length: +e.target.value }, () => ({
+        name: "",
+        questions: 1,
+        weightage: "",
+      }))
+    );
   };
-  console.log(maparray);
+
+  const handleSectionChange = (e, index) => {
+    const updatedSections = [...selectedSections];
+    updatedSections[index].name = e.target.value;
+    setSelectedSections(updatedSections);
+  };
+
+  const handleQuestionsChange = (e, index) => {
+    const updatedSections = [...selectedSections];
+    updatedSections[index].questions = +e.target.value;
+    setSelectedSections(updatedSections);
+  };
+
+  const handleWeightageChange = (e, index) => {
+    const updatedSections = [...selectedSections];
+    updatedSections[index].weightage = e.target.value;
+    setSelectedSections(updatedSections);
+  };
+
+  const handleNext = () => {
+    const filteredSections = selectedSections.filter(
+      (section) => section.name !== "" && section.questions > 0
+    );
+
+    if (filteredSections.length !== selectedSections.length) {
+      setValidationError(true);
+    } else {
+      setValidationError(false);
+      navigate("/Manuallysec1", { state: { selectedSections: filteredSections } });
+    }
+  };
+
   return (
-    <div className="=main">
-      <div
-        style={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          gap: "2rem",
-        }}
-      >
+    <div>
+      <div className="create-container">
         <div>
-          <div style={{ fontSize: "3rem", color: "darkblue" }}>
-            {" "}
-            Choosing Section
-          </div>
-          <div
-            style={{
-              backgroundColor: "rgb(236,237,243",
-              height: "6.5rem",
-              width: "auto",
-              marginTop: "2rem",
-            }}
-          >
-            <h1
-              style={{
-                fontSize: "1rem",
-                marginLeft: "1rem",
-                paddingTop: "1rem",
-                color: "darkblue",
-                position: "relative",
-              }}
-            >
-              NO OF SECTIONS
-            </h1>
+          <div className="section-heading">CHOOSING SECTION</div>
+          <div className="section-container">
+            <h1 className="section-title">NO OF SECTIONS</h1>
             <div className="option1">
-              <select
-                onChange={handleChange}
-                className="custom-select"
-                style={{
-                  width: "8rem",
-                  height: "2.5rem",
-                  marginLeft: "1rem",
-                  color: "darkblue",
-                  fontSize: "1.1rem",
-                  position: "absolute",
-                }}
-              >
-                <option
-                  style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                  value={1}
-                >
-                  1
-                </option>
-                <option
-                  style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                  value={2}
-                >
-                  2
-                </option>{" "}
-                <option
-                  style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                  value={3}
-                >
-                  3
-                </option>{" "}
-                <option
-                  style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                  value={4}
-                >
-                  4
-                </option>{" "}
+              <select onChange={handleChange} className="custom-select">
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
               </select>
             </div>
           </div>
         </div>
 
-        <div
-          style={{
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "2rem",
-          }}
-        >
+        <div className="section-content">
           {no_of_section &&
             maparray.fill("").map((item, index) => {
               return (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "2rem",
-                    width: "100%",
-                    justifyContent: "space-evenly",
-                  }}
-                >
-                  {" "}
+                <div className="section-item" key={index}>
                   <div>
-                    <p>Section{index + 1}</p>
+                    <p className="section-label">Section {index + 1}</p>
                   </div>
                   <div>
-                    {" "}
-                    <h1
-                      style={{
-                        fontSize: "1rem",
-                        marginLeft: "1rem",
-                        paddingTop: "1rem",
-                        color: "darkblue",
-                      }}
-                    >
-                      SELECT SECTION
-                    </h1>
+                    <h1 className="section-title">SELECT SECTION</h1>
                     <select
                       className="custom-select"
-                      style={{
-                        width: "8rem",
-                        height: "2.5rem",
-                        marginLeft: "1rem",
-                        color: "darkblue",
-                        fontSize: ".7rem",
-                      }}
+                      onChange={(e) => handleSectionChange(e, index)}
                     >
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        FILL IN THE BLANKS
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        MULTIPLE CHOICE
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        MATCH THE FOLLOWING
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        DESCRIPTIVE
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      ></option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      ></option>
+                      <option value="">Select Section</option>
+                      <option value="fill">FILL IN THE BLANKS</option>
+                      <option value="multiple">MULTIPLE CHOICE</option>
+                      <option value="match">MATCH THE FOLLOWING</option>
+                      <option value="descriptive">DESCRIPTIVE</option>
                     </select>
                   </div>
-                  <div style={{}}>
-                    <h1
-                      style={{
-                        fontSize: "1rem",
-                        marginLeft: "1rem",
-                        paddingTop: "1.2rem",
-                        color: "darkblue",
-                        position: "relative",
-                      }}
-                    >
-                      NUMBER OF QUESTIONS
-                    </h1>
+                  <div>
+                    <h1 className="section-title">NUMBER OF QUESTIONS</h1>
                     <select
                       className="custom-select"
-                      style={{
-                        width: "8rem",
-                        height: "2.5rem",
-                        marginLeft: "1rem",
-                        color: "darkblue",
-                        fontSize: ".7rem",
-                        position: "absolute",
-                      }}
+                      value={selectedSections[index].questions}
+                      onChange={(e) => handleQuestionsChange(e, index)}
                     >
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        1
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        2
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        3
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        4
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        5
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        6
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        7
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        8
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        9
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        10
-                      </option>
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                      <option value={6}>6</option>
+                      <option value={7}>7</option>
+                      <option value={8}>8</option>
+                      <option value={9}>9</option>
+                      <option value={10}>10</option>
                     </select>
                   </div>
-                  <div style={{}}>
-                    <h1
-                      style={{
-                        fontSize: "1rem",
-                        marginLeft: "2rem",
-                        paddingTop: "1.15rem",
-                        color: "darkblue",
-                        position: "relative",
-                      }}
-                    >
-                      SELECT WEIGHTAGE
-                    </h1>
+                  <div>
+                    <h1 className="section-title">SELECT WEIGHTAGE</h1>
                     <select
                       className="custom-select"
-                      style={{
-                        width: "8rem",
-                        height: "2.5rem",
-                        marginLeft: "2rem",
-                        color: "darkblue",
-                        fontSize: ".7rem",
-                        position: "absolute",
-                      }}
+                      value={selectedSections[index].weightage}
+                      onChange={(e) => handleWeightageChange(e, index)}
                     >
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        1
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        2
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        3
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        4
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        5
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        6
-                      </option>{" "}
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        7
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        8
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        9
-                      </option>
-                      <option
-                        style={{ color: "darkblue", fontWeight: "1.5rem" }}
-                        value=""
-                      >
-                        10
-                      </option>
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                      <option value="">4</option>
+                      <option value="">5</option>
+                      <option value="">6</option>
+                      <option value="">7</option>
+                      <option value="">8</option>
+                      <option value="">9</option>
+                      <option value="">10</option>
                     </select>
                   </div>
                 </div>
@@ -342,24 +140,25 @@ function Create() {
             })}
         </div>
 
-        <button
-          style={{
-            width: "10rem",
-            height: "2.5rem",
-            marginTop: "5rem",
-            marginLeft: "80rem",
+        {validationError && (
+          <p className="error-message">
+            Please select a section for all sections.
+          </p>
+        )}
 
-            color: "darkblue",
-            fontWeight: "bold",
-            fontSize: "1rem",
-            borderRadius: "0rem",
-            backgroundColor: "dark green",
-          }}
-        >
+        <button className="btn-next" onClick={handleNext}>
           NEXT
         </button>
+
+        <div className="footer">
+          <Link to="/" className="back-btn">
+            <Icon icon="eva:arrow-back-outline" className="back-icon" />
+            BACK
+          </Link>
+        </div>
       </div>
     </div>
   );
 }
+
 export default Create;

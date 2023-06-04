@@ -1,44 +1,70 @@
-import "../App.css";
 import { Icon } from "@iconify/react";
 import "./Examcreation.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
 
 function Exam() {
   const [type, setType] = useState("Automatically1");
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     console.log(e.target.value);
     setType(e.target.value);
   };
+
   const handleSubmit = (e) => {
     console.log("button clicked");
     navigate(`/${type}`);
   };
+
+  const initialValues = {
+    examname: "",
+    subcategory: "",
+    type: "",
+  };
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: Yup.object({
+      examname: Yup.string().required("Required"),
+      subcategory: Yup.string().required("Required"),
+      type: Yup.string().required("Required"),
+    }),
+    onSubmit: (values) => {
+      if (values.type === "Manually") {
+        navigate("/manually"); // Change "/manually" to the desired path for manual question generation
+      } else if (values.type === "Automatically1") {
+        navigate("/Automatically1"); // Change "/automatically" to the desired path for automatic question generation
+      }
+    },
+  });
+
   return (
-    <div>
+    <form style={{ position: "fixed" }} onSubmit={formik.handleSubmit}>
       <div
         style={{
-          marginTop: "5rem",
+          marginTop: "3rem",
           color: "darkblue",
           fontFamily: "times new roman",
           fontWeight: "bold",
-          fontSize: "3rem",
-          marginLeft: "4rem",
+          fontSize: "2rem",
+          marginLeft: "-30rem",
           position: "relative",
         }}
       >
-        {" "}
         EXAM CREATION
       </div>
       <div
         style={{
-          backgroundColor: "rgb(236,237,243",
+          backgroundColor: "rgb(236,237,243)",
           height: "6.5rem",
-          width: "auto",
+          width: "100rem",
           marginTop: "2rem",
-          position: "relative",
+          position: "fixed",
+          marginLeft: "-32rem",
         }}
       >
         <h1
@@ -47,7 +73,6 @@ function Exam() {
             marginLeft: "12rem",
             paddingTop: "1rem",
             color: "darkblue",
-            position: "relative",
           }}
         >
           ADD EXAM NAME
@@ -56,27 +81,37 @@ function Exam() {
           <input
             style={{
               width: "20rem",
-              height: "rem",
+              height: "2rem",
               backgroundColor: "transparent",
               border: "1px solid black",
               fontSize: "1rem",
               marginLeft: "12rem",
               position: "absolute",
               color: "darkblue",
+              boxShadow: "1px 3px 1px #9E9E9E",
             }}
             type="text"
-            placeholder="enter your examination name"
+            placeholder="Enter your examination name"
+            name="examname"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.examname}
           ></input>
+          {formik.touched.examname && formik.errors.examname && (
+            <div style={{ color: "red" }}>{formik.errors.examname}</div>
+          )}
         </div>
       </div>
 
       {/* 2ND */}
       <div
         style={{
-          backgroundColor: "rgb(236,237,243",
+          backgroundColor: "rgb(236,237,243)",
           height: "6.5rem",
           width: "auto",
-          marginTop: ".3rem",
+          marginLeft: "-32rem",
+          height: "6.5rem",
+          width: "100rem",
         }}
       >
         <h1
@@ -85,72 +120,78 @@ function Exam() {
             marginLeft: "12rem",
             paddingTop: "1rem",
             color: "darkblue",
+            marginTop: "10rem",
           }}
         >
-          {" "}
           ADD SUBJECT NAME
         </h1>
         <div className="option1">
           <select
+            onChange={formik.handleChange}
+            value={formik.values.subcategory}
+            name="subcategory"
             className="custom-select"
             style={{
               width: "20rem",
               height: "2.5rem",
-              marginLeft: "12rem",
+              marginLeft: "9rem",
               color: "darkblue",
               fontSize: "1.1rem",
               position: "absolute",
+              boxShadow: "1px 3px 1px #9E9E9E",
             }}
           >
             <option
               style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value="{}"
+              value=""
+            ></option>
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="computerscience"
             >
-              {" "}
               COMPUTER SCIENCE
             </option>
             <option
               style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
+              value="english"
             >
-              {" "}
-              BIOLOGY SCIENCE
-            </option>{" "}
+              ENGLISH
+            </option>
             <option
               style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
+              value="woodscience"
             >
-              {" "}
               WOOD SCIENCE
-            </option>{" "}
+            </option>
             <option
               style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
+              value="history"
             >
-              {" "}
               HISTORY
-            </option>{" "}
+            </option>
             <option
               style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            ></option>
+              value="computerapplication"
+            >
+              COMPUTER APPLICATION
+            </option>
           </select>
+          {formik.touched.subcategory && formik.errors.subcategory && (
+            <div style={{ color: "red" }}>{formik.errors.subcategory}</div>
+          )}
         </div>
       </div>
+
       <div
         style={{
-          backgroundColor: "rgb(236,237,243",
+          backgroundColor: "rgb(236,237,243)",
           height: "6.5rem",
           width: "auto",
-          marginTop: ".3rem",
+          marginTop: "1rem",
+          marginLeft: "-32rem",
+          height: "6.5rem",
+          width: "100rem",
+          position: "fixed",
         }}
       >
         <h1
@@ -161,20 +202,22 @@ function Exam() {
             color: "darkblue",
           }}
         >
-          {" "}
           QUESTION GENERATING METHOD
         </h1>
         <div className="option1">
           <select
-            onChange={handleChange}
+            value={formik.values.type}
+            name="type"
+            onChange={formik.handleChange}
             className="custom-select"
             style={{
               width: "20rem",
               height: "2.5rem",
-              marginLeft: "12rem",
+              marginLeft: "9rem",
               color: "darkblue",
               fontSize: "1.1rem",
               position: "absolute",
+              boxShadow: "1px 3px 1px #9E9E9E",
             }}
           >
             <option
@@ -188,18 +231,21 @@ function Exam() {
               value="Manually"
             >
               MANUALLY
-            </option>{" "}
+            </option>
           </select>
+          {formik.touched.type && formik.errors.type && (
+            <div style={{ color: "red" }}>{formik.errors.type}</div>
+          )}
         </div>
       </div>
 
       <button
-        onClick={handleSubmit}
+        type="submit"
         style={{
           width: "6rem",
           height: "2.5rem",
-          marginTop: "5rem",
-          marginLeft: "70rem",
+          marginTop: "14rem",
+          marginLeft: "52rem",
           color: "darkblue",
           fontWeight: "bold",
           fontSize: "1rem",
@@ -208,7 +254,8 @@ function Exam() {
       >
         Submit
       </button>
-    </div>
+    </form>
   );
 }
+
 export default Exam;

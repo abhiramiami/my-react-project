@@ -2,35 +2,35 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background:#08356e;
+  background: #08356e;
   padding: 20px 80px;
   box-shadow: 0 5px 15px rgba(255, 255, 255, 0.06);
-  height:65px;
-  width:100vw;
-  position:fixed;
-  top:0;
-  z-index:1;
+  height: 65px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
 
+.ouy {
+  color: white;
 }
-.ouy{
-  color:white;
-}
-.hidden{
+
+.hidden {
   display: none;
 }
-.show{
+
+.show {
   display: block;
 }
-.nav-btn{
-  width:auto;
-  color:#fff;
+
+.nav-btn {
+  width: auto;
+  color: #fff;
   z-index: 1;
- 
-
-
- 
-  padding: .5rem .5rem;
+  padding: 0.5rem 0.5rem;
 }
+
 #navbar {
   display: flex;
   align-items: center;
@@ -55,7 +55,7 @@ nav {
 
 #navbar li a:hover,
 #navbar li a.active {
-  color:white;
+  color: white;
 }
 
 #navbar li a:hover::after,
@@ -77,8 +77,13 @@ nav {
   color: #fff;
   align-items: center;
 }
-
-@media screen and (max-width: 769px) {
+@media (max-width: 480px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+  
+@media screen and (max-width: 768px) {
   #navbar {
     display: flex;
     flex-direction: column;
@@ -114,7 +119,6 @@ nav {
 }
 
 .one {
- 
   color: #08356e;
   text-align: left;
   bottom: 100px;
@@ -126,34 +130,32 @@ nav {
   font-size: 50px;
   color: #1f6ed4;
   text-align: bottom;
-
   bottom: 90px;
   position: fixed;
   text-align: center;
   justify-content: center;
   padding-left: 250px;
-
 }
 
 .three {
   font-size: 400px;
   color: #f80a0a;
   text-align: left;
-  text-align:center;
+  text-align: center;
   bottom: 98px;
   position: fixed;
   padding-left: 410px;
 }
 
-.onee
-{ font-size: 100px;
+.onee {
+  font-size: 100px;
   color: #08356e;
   text-align: left;
-
   bottom: 235px;
   position: fixed;
   padding-left: 578px;
 }
+
 .four {
   font-size: 18px;
   color: rgb(133, 24, 24);
@@ -162,11 +164,42 @@ nav {
   position: fixed;
   text-align: left;
   padding-left: 20px;
+}
 
+.login {
+  color: #fff;
 }
-.login{
-  color:#fff;
-}
-.navcolr{
+
+.navcolr {
   background-color: #1f6ed4;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background: #08356e;
+  color: #fff;
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
 }

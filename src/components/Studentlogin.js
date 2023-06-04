@@ -1,133 +1,137 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Component } from "react";
 import { Icon } from "@iconify/react";
-
-import Swal from "sweetalert";
+import Swal from "sweetalert2";
+import { Formik, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import "./Studentlogin1.css";
 
 class Login extends Component {
-  showAlert = () => {
-    // Swal({
-    //     title: "Success",
-    //     text: "Successfully Login",
-    //     icon: "success",
-    //     confirmButtonText: "OK",
-    //   });
-    Swal({
-      position: "top-end",
+  constructor() {
+    super();
+    this.initialvalues = {
+      Username: "",
+      Password: "",
+    };
+    this.validationschema = Yup.object().shape({
+      Username: Yup.string()
+        .email("Invalid email address format")
+        .required("Email is required"),
+      Password: Yup.string()
+        .min(3, "Password must be 3 characters at minimum")
+        .required("Password is required"),
+    });
+  }
+
+  showAlert = (navigate) => {
+    Swal.fire({
       icon: "success",
-      title: "Successfully Login",
-      showConfirmButton: false,
-      timer: 1500,
+      title: "Successfully Logged In",
+      showConfirmButton: true,
+      confirmButtonText: "OK",
+    }).then(() => {
+      navigate("/Dashboard1");
     });
   };
 
-  state = { clicked: false };
-  handleClick = () => {
-    this.setState({ clicked: !this.state.clicked });
-  };
   render() {
     return (
       <>
-        <div className="main" style={{ paddingTop: "3rem" }}>
-          <div className="align-centerr">
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "2rem",
-                backgroundColor: "rgb(236,237,243",
-                padding: "1rem 4rem",
-                borderRadius: "10%",
-                marginTop: "3%",
-                height: "34rem",
-                width: "32rem",
-                position: "fixed",
-                marginLeft: "25rem",
-              }}
-            >
-              <div className="">
-                <div className="container-image">
+        <Formik
+          className="main4"
+          style={{ paddingTop: "3rem" }}
+          initialValues={this.initialvalues}
+          onSubmit={(values) => {
+            console.log(values);
+            this.showAlert(this.props.navigate);
+          }}
+          validationSchema={this.validationschema}
+        >
+          {(props) => (
+            <div className="container4">
+              <Form className="card4" onSubmit={props.handleSubmit}>
+                <div className="container-image4">
                   <Icon
                     style={{ marginTop: "12%" }}
                     icon="mdi:user-supervisor"
                     width={160}
                   />
                 </div>
-              </div>
-
-              <h1
-                style={{
-                  marginTop: "0rem",
-                  color: "darkblue",
-                }}
-                className="font-linkk"
-              >
-                STUDENT
-              </h1>
-              <div className="input-container">
-                <div className="input-box">
-                  {/* <img src={email} alt='email' className='email'/> */}
-                  <Icon icon="mdi:user" className="email" />
-                  <input type="text" placeholder="Username" className="name" />
-                </div>
-                <div className="input-box">
-                  {/* <img src={email} alt='email' className='email'/> */}
-
-                  <Icon icon="mdi:password-remove" className="email" />
-
-                  <input
-                    style={{
-                      backgroundColor: "",
-                      marginTop: "1.5rem",
-                    }}
-                    type="password"
-                    placeholder="Password"
-                    className="name"
+                <h1 className="font-linkk4">STUDENT LOGIN</h1>
+                <div className="input-container4">
+                  <div className="input-box4">
+                    <Icon icon="mdi:user" className="email4" />
+                    <input
+                      type="text"
+                      placeholder="Username"
+                      className="name"
+                      name="Username"
+                      onChange={props.handleChange}
+                      value={props.values.Username}
+                      onBlur={props.handleBlur}
+                    />
+                  </div>
+                  <ErrorMessage
+                    component="div"
+                    name="Username"
+                    className="error-message4"
                   />
-                </div>
-                {/* <Link to="/forgot">
-                  <p>Forgot Password?</p>
-                </Link> */}
-                <Link
-                  style={{
-                    color: "darkblue",
-                    marginLeft: "3rem",
-                  }}
-                  to="/forgot"
-                >
-                  Forgot password?
-                </Link>
-                <div style={{ marginLeft: "3rem" }}>
-                  <Link to="/Dashboard1">
+                  <div className="input-box4">
+                    <Icon icon="mdi:password-remove" className="email4" />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      className="name"
+                      name="Password"
+                      onChange={props.handleChange}
+                      value={props.values.Password}
+                      onBlur={props.handleBlur}
+                    />
+                  </div>
+                  <ErrorMessage
+                    component="div"
+                    name="Password"
+                    className="error-message4"
+                  />
+                  <Link className="forgot-password4" to="/forgot">
+                    Forgot password?
+                  </Link>
+                  <div className="button-container4">
                     <button
-                      style={{
-                        color: "darkblue",
-                        fontweight: "bold",
-                        backgroundColor: "lightgrey",
-                        width: "7rem",
-                        height: "1.75rem",
-                        borderRadius: "2rem",
+                      type="submit"
+                      className="login-button4"
+                      onClick={() => {
+                        if (props.isValid) {
+                          props.handleSubmit();
+                        } else {
+                          Swal.fire({
+                            icon: "error",
+                            title: "All fields are required",
+                          });
+                        }
                       }}
-                      onClick={this.showAlert}
                     >
                       LOGIN
                     </button>
-                  </Link>
+                  </div>
+                  <p style={{ marginTop: "-3rem", marginLeft: "5rem" }}>
+                    Don't have an account yet?{" "}
+                    <Link style={{ color: "darkblue" }} to="/Studentreg">
+                      Sign up
+                    </Link>
+                  </p>
                 </div>
-                <p style={{}}>
-                  Don't have an account yet?{" "}
-                  <Link style={{ color: "darkblue" }} to="/Studentreg">
-                    REGISTER
-                  </Link>
-                </p>
-              </div>
+              </Form>
             </div>
-          </div>
-        </div>
+          )}
+        </Formik>
       </>
     );
   }
 }
 
-export default Login;
+export default function LoginWrapper() {
+  const navigate = useNavigate();
+
+  return <Login navigate={navigate} />;
+}

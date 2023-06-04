@@ -1,0 +1,45 @@
+.main10 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .align-center10 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container10 {
+    width: 400px;
+    padding: 20px;
+    background-Color: rgb(236,237,243);
+    border-radius: 5px;
+  }
+  
+  .card10 {
+    text-align: center;
+  }
+  
+  .font-link10 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .input-container10 {
+    margin-bottom: 20px;
+  }
+  
+  .back-icon10 {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .back-icon10:hover {
+    color: #ccc;
+  }
+  

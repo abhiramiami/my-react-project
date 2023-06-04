@@ -1,0 +1,1347 @@
+import { Component } from "react";
+import "./NavbarStyles.css";
+import { Link } from "react-router-dom";
+
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+      registerShow: false,
+      isMobile: false,
+    };
+    this.handleShow = this.handleShow.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.checkMobileView);
+    this.checkMobileView();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.checkMobileView);
+  }
+
+  checkMobileView = () => {
+    if (window.innerWidth <= 768) {
+      this.setState({ isMobile: true });
+    } else {
+      this.setState({ isMobile: false });
+    }
+  };
+
+  handleClick = () => {
+    this.setState((prevState) => ({
+      clicked: !prevState.clicked,
+      registerShow: false,
+    }));
+  };
+
+  handleShow() {
+    this.setState((prevState) => ({
+      registerShow: !prevState.registerShow,
+      clicked: false,
+    }));
+  }
+
+  render() {
+    const { clicked, registerShow, isMobile } = this.state;
+
+    const mobileMenuClass = clicked ? "active" : "";
+    const registerMenuClass = registerShow ? "show" : "";
+
+    return (
+      <>
+        <nav>
+          <a href="index.html">
+            <svg
+              id="logo-35"
+              width="50"
+              height="39"
+              viewBox="0 0 50 39"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Logo paths */}
+            </svg>
+          </a>
+          <div>
+            <ul id="navbar" className={`${mobileMenuClass}`}>
+              <li className="nav-btn">
+                <Link to="/">HOME</Link>
+              </li>
+              <li>
+                <Link to="/AboutUs">ABOUT US</Link>
+              </li>
+              <li>
+                {isMobile ? (
+                  <>
+                    <div className="login" onClick={this.handleClick}>
+                      LOGIN
+                    </div>
+                    <div className={`nav-main ${mobileMenuClass}`}>
+                      {/* Mobile menu content */}
+                      <div onClick={this.handleClick}>
+                        <Link to="/Invigilatorlogin" style={{ color: "white" }}>
+                          <p>INVIGILATOR</p>
+                        </Link>
+                      </div>
+                      <div onClick={this.handleClick}>
+                        <Link to="/studentlogin" style={{ color: "white" }}>
+                          <p>STUDENT</p>
+                        </Link>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="login">
+                    {/* Desktop login menu content */}
+                    <Link to="/Invigilatorlogin" style={{ color: "white" }}>
+                      <p>INVIGILATOR</p>
+                    </Link>
+                    <Link to="/studentlogin" style={{ color: "white" }}>
+                      <p>STUDENT</p>
+                    </Link>
+                  </div>
+                )}
+              </li>
+              <li>
+                <Link to="/ContactUs">CONTACT US</Link>
+              </li>
+              <li>
+                {isMobile ? (
+                  <>
+                    <div className="ouy" onClick={this.handleShow}>
+                      REGISTER
+                    </div>
+                    <div className={`nav-main ${registerMenuClass}`}>
+                      {/* Mobile register menu content */}
+                      <div onClick={this.handleShow}>
+                        <Link to="/Invreg" style={{ color: "white" }}>
+                          <p>INVIGILATOR</p>
+                        </Link>
+                      </div>
+                      <div onClick={this.handleShow}>
+                        <Link to="/studentreg" style={{ color: "white" }}>
+                          <p>STUDENT</p>
+                        </Link>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="ouy">
+                    {/* Desktop register menu content */}
+                    <Link to="/Invreg" style={{ color: "white" }}>
+                      <p>INVIGILATOR</p>
+                    </Link>
+                    <Link to="/studentreg" style={{ color: "white" }}>
+                      <p>STUDENT</p>
+                    </Link>
+                  </div>
+                )}
+              </li>
+            </ul>
+          </div>
+
+          {isMobile && (
+            <div id="mobile" onClick={this.handleClick}>
+              <i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
+            </div>
+          )}
+        </nav>
+      </>
+    );
+  }
+}
+
+export default Navbar;
+
+
+// invglog
+
+
+import { Link, useNavigate } from "react-router-dom";
+import { Component } from "react";
+import { Icon } from "@iconify/react";
+
+class AboutUs extends Component {
+  state = { clicked: false };
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+  render() {
+    return (
+      <>
+        <div
+          style={{
+            marginLeft: "-25rem",
+            fontWeight: "bold",
+            fontSize: "2rem",
+            color: "darkblue",
+            marginTop: "3rem",
+          }}
+        >
+          INVIGILATOR DASHBOARD
+        </div>
+        <div>
+          <Link to="/Examcreation">
+            <button
+              style={{
+                marginLeft: "-22rem",
+                width: "20rem",
+                height: "3rem",
+                color: "white",
+                backgroundColor: "darkblue",
+                marginTop: "5rem",
+              }}
+            >
+              EXAM CREATION
+            </button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/Evaluation">
+            <button
+              style={{
+                marginLeft: "-22rem",
+                width: "20rem",
+
+                height: "3rem",
+                color: "white",
+                marginLeft: "-22rem",
+                backgroundColor: "darkblue",
+                marginTop: "5rem",
+              }}
+            >
+              EVALUATION
+            </button>
+          </Link>
+        </div>
+      </>
+    );
+  }
+}
+
+export default AboutUs;
+
+
+
+// examcreation
+
+// import "../App.css";
+import { Icon } from "@iconify/react";
+import "./Examcreation.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
+function Exam() {
+  const [type, setType] = useState("Automatically1");
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setType(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    console.log("button clicked");
+    navigate(`/${type}`);
+  };
+  const initialValues = {
+    examname: "",
+    subcategory: "",
+    type: "",
+  };
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: Yup.object({
+      examname: Yup.string().required("Required"),
+      subcategory: Yup.string().required("Required"),
+      type: Yup.string().required("Required"),
+    }),
+    onSubmit: (values) => {
+      console.log("a", values);
+      navigate(`/${type}`);
+    },
+  });
+  console.log(formik.errors);
+  return (
+    <form  style={{position:"fixed"}}onSubmit={formik.handleSubmit}>
+      <div
+        style={{
+          marginTop: "3rem",
+          color: "darkblue",
+          fontFamily: "times new roman",
+          fontWeight: "bold",
+          fontSize: "2rem",
+          marginLeft: "-30rem",
+          position: "relative",
+        }}
+      >
+        {" "}
+        EXAM CREATION
+      </div>
+      <div
+        style={{
+          backgroundColor: "rgb(236,237,243",
+          height: "6.5rem",
+          width: "100rem",
+          marginTop: "2rem",
+          position: "fixed",
+          marginLeft: "-32rem",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "1rem",
+            marginLeft: "12rem",
+            paddingTop: "1rem",
+            color: "darkblue",
+            // position: "fixed",
+          }}
+        >
+          ADD EXAM NAME
+        </h1>
+        <div>
+          <input
+            style={{
+              width: "20rem",
+              height: "rem",
+              backgroundColor: "transparent",
+              border: "1px solid black",
+              fontSize: "1rem",
+              marginLeft: "12rem",
+              position: "absolute",
+              color: "darkblue",
+              boxShadow: "1px 3px 1px #9E9E9E",
+            }}
+            type="text"
+            placeholder="enter your examination name"
+            name="examname"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.examname}
+          ></input>
+          {formik.touched.examname && formik.errors.examname ? (
+            <div style={{ color: "red" }}>{formik.errors.examname}</div>
+          ) : null}
+        </div>
+      </div>
+
+      {/* 2ND */}
+      <div
+        style={{
+          backgroundColor: "rgb(236,237,243",
+          height: "6.5rem",
+          width: "auto",
+          marginLeft: "-32rem",
+          height: "6.5rem",
+          width: "100rem",
+          //  position: "fixed",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "1rem",
+            marginLeft: "12rem",
+            paddingTop: "1rem",
+            color: "darkblue",
+            marginTop: "10rem",
+            // position: "relative",
+          }}
+        >
+          {" "}
+          ADD SUBJECT NAME
+        </h1>
+        <div className="option1">
+          <select
+            onChange={formik.handleChange}
+            value={formik.values.subcategory}
+            name="subcategory"
+            className="custom-select"
+            style={{
+              width: "20rem",
+              height: "2.5rem",
+              marginLeft: "12rem",
+              color: "darkblue",
+              fontSize: "1.1rem",
+              position: "absolute",
+              boxShadow: "1px 3px 1px #9E9E9E",
+            }}
+          >
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="{}"
+            ></option>
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="computerscience"
+            >
+              {" "}
+              COMPUTER SCIENCE
+            </option>
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="english"
+            >
+              {" "}
+              ENGLISH
+            </option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="woodscience"
+            >
+              {" "}
+              WOOD SCIENCE
+            </option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="history"
+            >
+              {" "}
+              HISTORY
+            </option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="computerapplication"
+            >
+              COMPUTER APPLICATION
+            </option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value=""
+            ></option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value=""
+            ></option>
+          </select>
+          {formik.errors.subcategory ? (
+            <div style={{ color: "red" }}>{formik.errors.subcategory}</div>
+          ) : null}
+        </div>
+      </div>
+      <div
+        style={{
+          backgroundColor: "rgb(236,237,243",
+          height: "6.5rem",
+          width: "auto",
+          marginTop: "1rem",
+          marginLeft: "-32rem",
+          height: "6.5rem",
+          width: "100rem",
+          position: "fixed",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "1rem",
+            marginLeft: "12rem",
+            paddingTop: "1rem",
+            color: "darkblue",
+          }}
+        >
+          {" "}
+          QUESTION GENERATING METHOD
+        </h1>
+        <div className="option1">
+          <select
+            value={formik.values.type}
+            name="type"
+            onChange={formik.handleChange}
+            className="custom-select"
+            style={{
+              width: "20rem",
+              height: "2.5rem",
+              marginLeft: "12rem",
+              color: "darkblue",
+              fontSize: "1.1rem",
+              position: "absolute",
+              boxShadow: "1px 3px 1px #9E9E9E",
+            }}
+          >
+            <option
+              style={{ color: "darkblue", fontWeight: ".5rem" }}
+              value="Automatically1"
+            >
+              AUTOMATICALLY
+            </option>
+            <option
+              style={{ color: "darkblue", fontWeight: ".5rem" }}
+              value="Manually"
+            >
+              MANUALLY
+            </option>{" "}
+          </select>
+          {formik.errors.type ? (
+            <div style={{ color: "red" }}>{formik.errors.type}</div>
+          ) : null}
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        style={{
+          width: "6rem",
+          height: "2.5rem",
+          marginTop: "14rem",
+          marginLeft: "52rem",
+          color: "darkblue",
+          fontWeight: "bold",
+          fontSize: "1rem",
+          borderRadius: "0rem",
+        }}
+      >
+        Submit
+      </button>
+    </form>
+  );
+}
+export default Exam;
+
+// aboutus
+
+
+
+import { Link, useNavigate } from "react-router-dom";
+import { Component } from "react";
+import { Icon } from "@iconify/react";
+// import "../App.css";
+
+class AboutUs extends Component {
+  state = { clicked: false };
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+  render() {
+    return (
+      <>
+        <div className="main1">
+          <div className="align-center">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                marginLeft: "40rem",
+                marginBottom: "10rem",
+                position: " fixed",
+              }}
+            >
+              <div
+                style={{
+                  width: "30rem",
+                  backgroundColor: "rgb(236,237,243",
+                  padding: "5rem 3rem",
+                  height: "auto",
+                  display: "flex",
+                  flexDirection: "column",
+                  borderRadius: "10%",
+                }}
+              >
+                <h1
+                  style={{ marginTop: "0rem", marginLeft: "5rem" }}
+                  className="font-link"
+                >
+                  ABOUT US
+                </h1>
+                <div className="input-container">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Neque egestas congue quisque egestas diam in arcu.
+                    Sed arcu non odio euismod lacinia. In hac habitasse platea
+                    dictumst. Sollicitudin aliquam ultrices sagittis orci.
+                  </p>
+                </div>
+
+                <Link to="/">
+                  <Icon
+                    style={{
+                      height: "2rem",
+                      width: "2rem",
+                      marginLeft: "10rem",
+                    }}
+                    icon="mdi:arrow-back-circle"
+                  />{" "}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
+export default AboutUs;
+
+/* AboutUsStyles.css */
+
+.dashboard-title {
+  margin-left: -25rem;
+  font-weight: bold;
+  font-size: 2rem;
+  color: darkblue;
+  margin-top: 3rem;
+}
+
+.dashboard-button {
+  margin-left: -22rem;
+  width: 20rem;
+  height: 3rem;
+  color: white;
+  background-color: darkblue;
+  margin-top: 5rem;
+}
+
+@media screen and (max-width: 768px) {
+  /* Responsive styles for screens with maximum width of 768px */
+  .dashboard-title {
+    margin-left: 0;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .dashboard-button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 2rem;
+  }
+}
+
+
+
+
+// invlog
+
+import { Link, useNavigate } from "react-router-dom";
+import { Component } from "react";
+import { Icon } from "@iconify/react";
+import Swal from "sweetalert2";
+import { Formik, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+// import "./Invigilatorlogin.css";
+
+class Login extends Component {
+  constructor() {
+    super();
+    this.initialvalues = {
+      Username: "",
+      Password: "",
+    };
+    this.validationschema = Yup.object().shape({
+      Username: Yup.string()
+        .email("Invalid email address format")
+        .required("Email is required"),
+      Password: Yup.string()
+        .min(3, "Password must be 3 characters at minimum")
+        .required("Password is required"),
+    });
+  }
+
+  showAlert = () => {
+    Swal.fire({
+      icon: "success",
+      title: "Successfully Logged In",
+      showConfirmButton: true,
+
+      confirmButtonText: "OK",
+    }).then(() => {
+      // Add your navigation logic here
+      const navigate = useNavigate();
+      navigate("/Dashboard"); // Replace "/dashboard" with the desired URL
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <Formik
+          className="main"
+          style={{ paddingTop: "3rem" }}
+          initialValues={this.initialvalues}
+          onSubmit={(values) => {
+            console.log(values);
+            this.showAlert();
+            // Add your navigation logic here
+            const navigate = useNavigate();
+            navigate("/Dashboard"); // Replace "/dashboard" with the desired URL
+          }}
+          validationSchema={this.validationschema}
+        >
+          {(props) => (
+            <div style={{}} className="align-centerr">
+              <Form
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "2rem",
+                  backgroundColor: "rgb(236,237,243)",
+                  padding: "1rem 4rem",
+                  borderRadius: "10%",
+                  marginTop: "8%",
+                  width: "35rem",
+                  marginLeft: "5rem",
+                  height: "35rem",
+                }}
+                onSubmit={props.handleSubmit}
+              >
+                <div>
+                  <div className="container-image">
+                    <Icon
+                      style={{ marginTop: "12%" }}
+                      icon="mdi:user-supervisor"
+                      width={160}
+                    />
+                  </div>
+                </div>
+
+                <h1
+                  style={{ marginTop: "0rem", color: "darkblue" }}
+                  className="font-linkk"
+                >
+                  INVIGILATOR LOGIN
+                </h1>
+                <div className="input-container">
+                  <div className="input-box">
+                    <Icon icon="mdi:user" className="email" />
+                    <input
+                      style={{
+                        backgroundColor: "lightgray",
+                        borderRadius: "2rem",
+                        boxShadow: "1px 3px 1px #9E9E9E",
+                      }}
+                      type="text"
+                      placeholder="Username"
+                      className="name"
+                      name="Username"
+                      onChange={props.handleChange}
+                      value={props.values.Username}
+                      onBlur={props.handleBlur}
+                    />
+                  </div>
+                  <ErrorMessage
+                    component="div"
+                    name="Username"
+                    style={{ color: "red" }}
+                  />
+                  <div className="input-box">
+                    <Icon icon="mdi:password-remove" className="email" />
+                    <input
+                      style={{
+                        backgroundColor: "lightgray",
+                        borderRadius: "2rem",
+                        marginTop: "2rem",
+                        boxShadow: "1px 3px 1px #9E9E9E",
+                      }}
+                      type="password"
+                      placeholder="Password"
+                      className="name"
+                      name="Password"
+                      onChange={props.handleChange}
+                      value={props.values.Password}
+                      onBlur={props.handleBlur}
+                    />
+                  </div>
+                  <ErrorMessage
+                    component="div"
+                    name="Password"
+                    style={{ color: "red" }}
+                  />
+
+                  <Link
+                    style={{
+                      color: "blue",
+                      marginLeft: "3rem",
+                      marginTop: "8rem",
+                    }}
+                    to="/forgot"
+                  >
+                    Forgot password?
+                  </Link>
+
+                  <div style={{ height: "2rem" }}>
+                    <button
+                      style={{
+                        marginLeft: "5rem",
+                        color: "darkblue",
+                        height: "2rem",
+                        width: "4rem",
+                        backgroundColor: "white",
+                        borderRadius: "3rem",
+                      }}
+                      type="submit"
+                      className="signup-button"
+                      onClick={() => {
+                        if (props.isValid) {
+                          props.handleSubmit();
+                        } else {
+                          Swal.fire({
+                            icon: "error",
+                            title: "All fields are required",
+                          });
+                        }
+                      }}
+                    >
+                      LOGIN
+                    </button>
+                  </div>
+                  <p>
+                    Don't have an account yet?{" "}
+                    <Link style={{ color: "blue" }} to="/Invreg">
+                      Sign up
+                    </Link>
+                  </p>
+                </div>
+              </Form>
+            </div>
+          )}
+        </Formik>
+      </>
+    );
+  }
+}
+
+export default Login;
+//  css
+
+
+// RESEND
+
+
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useFormik, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+function App() {
+  const [otp, setOtp] = useState("");
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(30);
+  const initialvalues = {
+    OTP: "",
+  };
+  const validationSchema = Yup.object().shape({
+    OTP: Yup.string().required("OTP IS REQUIRED"),
+  });
+  const formik = useFormik({
+    initialValues: {
+      OTP: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(interval);
+        } else {
+          setSeconds(59);
+          setMinutes(minutes - 1);
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [seconds]);
+
+  const resendOTP = () => {
+    setMinutes(1);
+    setSeconds(30);
+  };
+
+  return (
+    <div className="main">
+      <form className="align-centerr" onSubmit={formik.handleSubmit}>
+        <div
+          className="card"
+          style={{
+            height: "15rem",
+            width: "22rem",
+            padding: "2rem 2rem",
+            borderRadius: "10%",
+            marginTop: "20%",
+            marginLeft: "35rem",
+            justifySelf: "center",
+            backgroundColor: "rgb(236,237,243)",
+          }}
+        >
+          <h4 style={{ color: "darkblue", marginLeft: "5rem" }}>Verify OTP</h4>
+
+          <input
+            style={{ borderRadius: "2rem" }}
+            className="valid"
+            placeholder="Enter OTP"
+            name="OTP"
+            onChange={formik.handleChange}
+            value={formik.values.OTP}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.OTP && formik.errors.OTP ? (
+            <div style={{ color: "red" }}>{formik.errors.OTP}</div>
+          ) : null}
+
+          <div className="countdown-text">
+            {seconds > 0 || minutes > 0 ? (
+              <p style={{ color: "darkblue" }}>
+                Time Remaining: {minutes < 10 ? `0${minutes}` : minutes}:
+                {seconds < 10 ? `0${seconds}` : seconds}
+              </p>
+            ) : (
+              <p style={{ color: "darkblue" }}>Didn't recieve code?</p>
+            )}
+
+            <button
+              disabled={seconds > 0 || minutes > 0}
+              style={{
+                color: seconds > 0 || minutes > 0 ? "#DFE3E8" : "#FF5630",
+              }}
+              onClick={resendOTP}
+            >
+              Resend OTP
+            </button>
+          </div>
+          <Link to="/Reset">
+            <button
+              style={{
+                color: "darkblue",
+
+                marginLeft: "5rem",
+                height: "2rem",
+              }}
+              type="submit"
+              className="submit-btn"
+            >
+              SUBMIT
+            </button>
+          </Link>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+
+// reset
+
+// examcreation
+
+import { Icon } from "@iconify/react";
+import "./Examcreation.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
+function Exam() {
+  const [type, setType] = useState("Automatically1");
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setType(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    console.log("button clicked");
+    navigate(`/${type}`);
+  };
+  const initialValues = {
+    examname: "",
+    subcategory: "",
+    type: "",
+  };
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: Yup.object({
+      examname: Yup.string().required("Required"),
+      subcategory: Yup.string().required("Required"),
+      type: Yup.string().required("Required"),
+    }),
+    onSubmit: (values) => {
+      console.log("a", values);
+      navigate(`/${type}`);
+    },
+  });
+  console.log(formik.errors);
+  return (
+    <form  style={{position:"fixed"}}onSubmit={formik.handleSubmit}>
+      <div
+        style={{
+          marginTop: "3rem",
+          color: "darkblue",
+          fontFamily: "times new roman",
+          fontWeight: "bold",
+          fontSize: "2rem",
+          marginLeft: "-30rem",
+          position: "relative",
+        }}
+      >
+        {" "}
+        EXAM CREATION
+      </div>
+      <div
+        style={{
+          backgroundColor: "rgb(236,237,243",
+          height: "6.5rem",
+          width: "100rem",
+          marginTop: "2rem",
+          position: "fixed",
+          marginLeft: "-32rem",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "1rem",
+            marginLeft: "12rem",
+            paddingTop: "1rem",
+            color: "darkblue",
+            // position: "fixed",
+          }}
+        >
+          ADD EXAM NAME
+        </h1>
+        <div>
+          <input
+            style={{
+              width: "20rem",
+              height: "rem",
+              backgroundColor: "transparent",
+              border: "1px solid black",
+              fontSize: "1rem",
+              marginLeft: "12rem",
+              position: "absolute",
+              color: "darkblue",
+              boxShadow: "1px 3px 1px #9E9E9E",
+            }}
+            type="text"
+            placeholder="enter your examination name"
+            name="examname"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.examname}
+          ></input>
+          {formik.touched.examname && formik.errors.examname ? (
+            <div style={{ color: "red" }}>{formik.errors.examname}</div>
+          ) : null}
+        </div>
+      </div>
+
+      {/* 2ND */}
+      <div
+        style={{
+          backgroundColor: "rgb(236,237,243",
+          height: "6.5rem",
+          width: "auto",
+          marginLeft: "-32rem",
+          height: "6.5rem",
+          width: "100rem",
+          //  position: "fixed",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "1rem",
+            marginLeft: "12rem",
+            paddingTop: "1rem",
+            color: "darkblue",
+            marginTop: "10rem",
+            // position: "relative",
+          }}
+        >
+          {" "}
+          ADD SUBJECT NAME
+        </h1>
+        <div className="option1">
+          <select
+            onChange={formik.handleChange}
+            value={formik.values.subcategory}
+            name="subcategory"
+            className="custom-select"
+            style={{
+              width: "20rem",
+              height: "2.5rem",
+              marginLeft: "12rem",
+              color: "darkblue",
+              fontSize: "1.1rem",
+              position: "absolute",
+              boxShadow: "1px 3px 1px #9E9E9E",
+            }}
+          >
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="{}"
+            ></option>
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="computerscience"
+            >
+              {" "}
+              COMPUTER SCIENCE
+            </option>
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="english"
+            >
+              {" "}
+              ENGLISH
+            </option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="woodscience"
+            >
+              {" "}
+              WOOD SCIENCE
+            </option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="history"
+            >
+              {" "}
+              HISTORY
+            </option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value="computerapplication"
+            >
+              COMPUTER APPLICATION
+            </option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value=""
+            ></option>{" "}
+            <option
+              style={{ color: "darkblue", fontWeight: "1.5rem" }}
+              value=""
+            ></option>
+          </select>
+          {formik.errors.subcategory ? (
+            <div style={{ color: "red" }}>{formik.errors.subcategory}</div>
+          ) : null}
+        </div>
+      </div>
+      <div
+        style={{
+          backgroundColor: "rgb(236,237,243",
+          height: "6.5rem",
+          width: "auto",
+          marginTop: "1rem",
+          marginLeft: "-32rem",
+          height: "6.5rem",
+          width: "100rem",
+          position: "fixed",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "1rem",
+            marginLeft: "12rem",
+            paddingTop: "1rem",
+            color: "darkblue",
+          }}
+        >
+          {" "}
+          QUESTION GENERATING METHOD
+        </h1>
+        <div className="option1">
+          <select
+            value={formik.values.type}
+            name="type"
+            onChange={formik.handleChange}
+            className="custom-select"
+            style={{
+              width: "20rem",
+              height: "2.5rem",
+              marginLeft: "12rem",
+              color: "darkblue",
+              fontSize: "1.1rem",
+              position: "absolute",
+              boxShadow: "1px 3px 1px #9E9E9E",
+            }}
+          >
+            <option
+              style={{ color: "darkblue", fontWeight: ".5rem" }}
+              value="Automatically1"
+            >
+              AUTOMATICALLY
+            </option>
+            <option
+              style={{ color: "darkblue", fontWeight: ".5rem" }}
+              value="Manually"
+            >
+              MANUALLY
+            </option>{" "}
+          </select>
+          {formik.errors.type ? (
+            <div style={{ color: "red" }}>{formik.errors.type}</div>
+          ) : null}
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        style={{
+          width: "6rem",
+          height: "2.5rem",
+          marginTop: "14rem",
+          marginLeft: "52rem",
+          color: "darkblue",
+          fontWeight: "bold",
+          fontSize: "1rem",
+          borderRadius: "0rem",
+        }}
+      >
+        Submit
+      </button>
+    </form>
+  );
+}
+export default Exam;
+
+
+// manuallysec
+
+
+
+import "../App.css";
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import "./Manuallysec.css";
+function Create() {
+  const [no_of_section, set_section] = useState(1);
+  const maparray = new Array(+no_of_section);
+  const [selectedSections, setSelectedSections] = useState(Array.from({ length: +no_of_section }, () => ""));
+  const [validationError, setValidationError] = useState(false);
+  
+  const handleChange = (e) => {
+    set_section(e.target.value);
+    setSelectedSections(Array.from({ length: +e.target.value }, () => ""));
+  };
+  
+  const handleSectionChange = (e, index) => {
+    const updatedSections = [...selectedSections];
+    updatedSections[index] = e.target.value;
+    setSelectedSections(updatedSections);
+  };
+  
+  const handleNext = () => {
+    // Check if any section is not selected
+    if (selectedSections.includes("")) {
+      setValidationError(true);
+    } else {
+      // Proceed to the next step
+      setValidationError(false);
+      // Add your logic here
+    }
+  };
+  
+  return (
+    <div>
+      <div className="create-container">
+        <div>
+          <div className="section-heading">CHOOSING SECTION</div>
+          <div className="section-container">
+            <h1 className="section-title">NO OF SECTIONS</h1>
+            <div className="option1">
+              <select
+                onChange={handleChange}
+                className="custom-select"
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="section-content">
+          {no_of_section &&
+            maparray.fill("").map((item, index) => {
+              return (
+                <div
+                  className="section-item"
+                  key={index}
+                >
+                  <div>
+                    <p className="section-label">Section {index + 1}</p>
+                  </div>
+                  <div>
+                    <h1 className="section-title">SELECT SECTION</h1>
+                    <select
+                      className="custom-select"
+                      onChange={(e) => handleSectionChange(e, index)}
+                    >
+                      <option value="">Select Section</option>
+                      <option value="fill">FILL IN THE BLANKS</option>
+                      <option value="multiple">MULTIPLE CHOICE</option>
+                      <option value="match">MATCH THE FOLLOWING</option>
+                      <option value="descriptive">DESCRIPTIVE</option>
+                    </select>
+                  </div>
+                  <div>
+                    <h1 className="section-title">NUMBER OF QUESTIONS</h1>
+                    <select className="custom-select">
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                      <option value="">4</option>
+                      <option value="">5</option>
+                      <option value="">6</option>
+                      <option value="">7</option>
+                      <option value="">8</option>
+                      <option value="">9</option>
+                      <option value="">10</option>
+                    </select>
+                  </div>
+                  <div>
+                    <h1 className="section-title">SELECT WEIGHTAGE</h1>
+                    <select className="custom-select">
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                      <option value="">4</option>
+                      <option value="">5</option>
+                      <option value="">6</option>
+                      <option value="">7</option>
+                      <option value="">8</option>
+                      <option value="">9</option>
+                      <option value="">10</option>
+                    </select>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+
+        {validationError && <p className="error-message">Please select a section for all sections.</p>}
+        
+        <button className="btn-next" onClick={handleNext}>
+          NEXT
+        </button>
+
+        <div className="footer">
+          <Link to="/" className="back-btn">
+            <Icon icon="eva:arrow-back-outline" className="back-icon" />
+            BACK
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Create;

@@ -1,62 +1,108 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Component } from "react";
 import { Icon } from "@iconify/react";
-import "../App.css";
+import { Formik, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 class ContactUs extends Component {
+  constructor() {
+    super();
+    this.initialvalues = {
+      Username: "",
+      Email: "",
+      Message: "",
+    };
+    this.validationschema = Yup.object().shape({
+      Username: Yup.string()
+
+        // Format Validation
+
+        // Required Field Validation
+        .required("Username is required"),
+      Email: Yup.string()
+        .email("Invalid email address format")
+        .required("email field is required"),
+
+      //Minimum Character Validation
+      Message: Yup.string().required("message field is required"),
+    });
+  }
   state = { clicked: false };
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
   };
   render() {
     return (
-      <>
-        <div className="main">
-          <div className="sub-main">
-            <div
+      <div className="main">
+        <Formik
+          className=""
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          initialValues={this.initialvalues}
+          validationSchema={this.validationschema}
+        >
+          {(props) => (
+            <Form
               style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 gap: "2rem",
-                backgroundColor: "rgb(236,237,243)",
-                marginTop: "5rem",
-                height: "35rem",
-                width: "32rem",
-                marginLeft: "29rem",
-                borderRadius: "4rem",
-                position: "fixed",
+                marginTop: "3%",
+                // backgroundColor: "white",
+
+                marginTop: "4%",
+                width: "100%",
               }}
             >
-              <div className="imgs"></div>
               <div
                 style={{
                   width: "auto",
                   height: "auto",
                   display: "flex",
                   flexDirection: "column",
+                  backgroundColor: "rgb(236,237,243)",
+                  padding: "4rem 5rem",
+                  borderRadius: "10%",
+                  marginTop: "5rem",
                 }}
               >
-                <h1
-                  style={{ marginTop: "3rem", color: "darkblue" }}
-                  className="font-link"
-                >
-                  CONTACT US
-                </h1>
                 <div
-                  className="input-container"
-                  style={{ marginTop: ".95rem" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "5%",
+                    color: "darkblue",
+                  }}
                 >
+                  <h1 className="font-linkk">CONTACT US</h1>
+                </div>
+                <div className="input-container">
                   <div className="input-boxes">
                     {/* <img src={email} alt='email' className='email'/> */}
                     <Icon icon="mdi:user" className="email" />
                     <input
-                      // style={{ marginTop: "1rem", paddingTop: "2rem" }}
+                      style={{ borderRadius: "3rem", marginLeft: "1rem" }}
                       type="text"
                       placeholder="Username"
                       className="name"
+                      name="Username"
+                      onChange={props.handleChange}
+                      value={props.values.Username}
+                      onBlur={props.handleBlur}
                     />
                   </div>
+                  <ErrorMessage
+                    component="div"
+                    name="Username"
+                    style={{ color: "red" }}
+                  />
+
                   <div className="input-boxes">
                     {/* <img src={email} alt='email' className='email'/> */}
                     <Icon
@@ -65,56 +111,85 @@ class ContactUs extends Component {
                     />
                     <input
                       style={{
-                        marginTop: "1rem",
-                        // paddingTop: "2rem",
-                        fontSize: "1rem",
+                        borderRadius: "3rem",
+                        marginTop: "2rem",
+                        marginLeft: "1rem",
                       }}
                       type="text"
                       placeholder="Email"
                       className="name"
+                      name="Email"
+                      onChange={props.handleChange}
+                      value={props.values.Email}
+                      onBlur={props.handleBlur}
                     />
                   </div>
-                  <div style={{ marginTop: "1rem" }}>
+                  <ErrorMessage
+                    component="div"
+                    name="Email"
+                    style={{ color: "red" }}
+                  />
+
+                  <div className="input-boxes">
                     {/* <img src={phoneno} alt='phoneno' className='phoneno'/> */}
-                    <Icon icon="ic:baseline-send-to-mobile" className="email" />
-                    <input
-                      style={{ fontSize: "1rem" }}
+                    {/* <Icon icon="ic:baseline-send-to-mobile" /> */}
+                    <textarea
+                      style={{
+                        resize: "none",
+                        borderRadius: "3rem",
+                        marginTop: "2rem",
+                        marginLeft: ".5rem",
+                        width: "15rem",
+                        alignItems: "center",
+                      }}
                       type="text"
+                      rows={5}
                       placeholder="Message..."
                       className="name"
+                      name="Message"
+                      onChange={props.handleChange}
+                      value={props.values.Message}
+                      onBlur={props.handleBlur}
                     />
+                  </div>
+                  <ErrorMessage
+                    component="div"
+                    name="Message"
+                    style={{ color: "red" }}
+                  />
+                  <div
+                    style={{
+                      marginLeft: "5rem",
+                      marginTop: "2rem",
+                    }}
+                  >
+                    <button
+                      style={{
+                        width: "6rem",
+                        height: "3rem",
+                        borderRadius: "2rem",
+                        color: "darkblue",
+                        backgroundColor: "lightblue",
+                      }}
+                      type="submit"
+                      className="submit signup-button"
+                    >
+                      SUBMIT
+                    </button>
                   </div>
                 </div>
 
-                <div style={{ height: "4rem", width: "5rem" }}>
-                  <button
-                    style={{
-                      backgroundColor: "lightgray",
-                      marginLeft: "5rem",
-                      marginTop: "1.5rem",
-                      color: "darkblue",
-                      fontWeight: "bold",
-                      borderRadius: "2rem",
-
-                      height: "3rem",
-                      width: "6rem",
-                    }}
-                    className="submit"
-                  >
-                    SUBMIT
-                  </button>
-                </div>
-                <Link to="/">
-                  <Icon
-                    style={{ marginTop: "2rem", marginLeft: "7.5rem" }}
-                    icon="streamline:interface-arrows-turn-backward-arrow-bend-curve-change-direction-return-left-back-backward"
-                  />
-                </Link>
+                {/* <div className="submit-button">
+                <button className="submit">SUBMIT</button>
+              </div> */}
+                {/* <Link to="/">
+                <Icon icon="streamline:interface-arrows-turn-backward-arrow-bend-curve-change-direction-return-left-back-backward" />
+                </Link> */}
               </div>
-            </div>
-          </div>
-        </div>
-      </>
+            </Form>
+          )}
+        </Formik>
+      </div>
     );
   }
 }

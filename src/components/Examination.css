@@ -1,0 +1,218 @@
+.Exam {
+    text-align: center;
+    margin: auto;
+    max-width: 500px;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 6rem;
+    box-shadow: 2px 6px #ffffff;
+  }
+  
+  .Exam h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color:darkblue;
+    font-weight: bold;
+    margin-top: -5rem;
+
+  }
+    
+  .EI {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color:darkblue;
+    font-weight: bold;
+    margin-left: 6rem;
+    margin-top: 2rem;
+
+  }
+  
+  .Exam p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    /* margin-left: -12rem; */
+    justify-content: center;
+    font-weight: bold;
+  } */
+  .D{
+    margin-left: -12rem;
+  }
+  .T{
+    margin-left: -19rem;
+  }
+  .R{
+    margin-left: -17rem;
+  }
+  .audio label,
+.video label {
+  display: flex;
+  align-items: center;
+}
+
+.audio input,
+.video input {
+  margin-right: 0.5rem;
+}
+  .Exam button {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    box-shadow: 2px 6px #ffffff;
+   margin-top: 2rem;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .Exam button:hover {
+    background-color: #45a049;
+    box-shadow: 5px 10px #888888;
+  }
+  
+  .Exam .timer {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  .a{
+    font-weight: bold;
+    gap:1rem;
+  }
+  .b{
+    font-weight: bold;
+    gap:2rem;
+  }
+  .bt1{
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    box-shadow: 2px 6px #ffffff;
+   margin-top: 2rem;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 15rem;
+  }
+  .ep{
+    color:darkblue;
+    margin-top: 4rem; font-weight: bold;
+  }
+  .er{
+    font-weight: bold;
+    color:red;
+  }
+  .examContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .examContent {
+    flex: 1;
+  }
+  .video-container {
+    position: relative;
+  }
+  
+  video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+  
+  .face-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  
+  
+  /* .faceFrame { */
+    /* position: absolute; */
+    /* top: 0;
+    left: 0;
+    border: 2px solid red;
+  } */
+  .navbar {
+    display: none;
+  }
+  .exam-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+  }
+  
+  .timer {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .start-page,
+  .instructions-page,
+  .in-progress-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .start-button,
+  .next-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .start-button:hover,
+  .next-button:hover {
+    background-color: #0069d9;
+  }
+  
+  .permissions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .permission {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .permission label {
+    margin-left: 5px;
+  }
+  
+  .video-element {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  /* Add any additional CSS styles here */
+  
+  
+  /* Add this CSS code to your "Examination.css" file */
+  @media screen and (max-width: 768px) {
+    .navbar {
+      display: block;
+    }
+  }
+ 
+  
+  
+  
+  
+   
+
+   

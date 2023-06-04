@@ -1,222 +1,291 @@
-import "../App.css";
-import { Icon } from "@iconify/react";
+import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
+export default class QuestionsAndAnswers extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fillInBlankQuestions: [],
+      multipleChoiceQuestions: [],
+      matchTheFollowingQuestions: [],
+      descriptiveTypeQuestions: [],
+      invigilator: "",
+    };
+  }
 
-function exam() {
-  return (
-    <div>
-      <div
-        style={{
-          marginTop: "5rem",
-          color: "darkblue",
-          fontFamily: "times new roman",
-          fontWeight: "bold",
-          fontSize: "3rem",
-          marginLeft: "4rem",
-          position: "relative",
-        }}
-      >
-        {" "}
-        Choosing Section
-      </div>
-      <div
-        style={{
-          fontWeight: "bold",
-          color: "darkblue",
-          marginLeft: "8rem",
-          marginTop: ".5rem",
-        }}
-      >
-        SECTION A
-      </div>
-      <div
-        style={{
-          backgroundColor: "rgb(236,237,243",
-          height: "30.5rem",
-          width: "auto",
-          marginTop: "1rem",
-          position: "relative",
-        }}
-      >
-        <h1
-          style={{
-            fontSize: "1rem",
-            marginLeft: "12rem",
-            paddingTop: "1rem",
-            color: "darkblue",
-            position: "relative",
-          }}
-        >
-          NO OF QUESTIONS
-        </h1>
-        <div className="option1">
-          <select
-            className="custom-select"
-            style={{
-              width: "20rem",
-              height: "2.5rem",
-              marginLeft: "12rem",
-              color: "darkblue",
-              fontSize: "1.1rem",
-              position: "absolute",
-            }}
+  handleInputChange = (e, questionType, index) => {
+    const { name, value } = e.target;
+    this.setState((prevState) => {
+      const questions = [...prevState[questionType]];
+      questions[index][name] = value;
+      return { [questionType]: questions };
+    });
+  };
+
+  handleAddQuestion = (questionType) => {
+    this.setState((prevState) => ({
+      [questionType]: [...prevState[questionType], { answer: "" }],
+    }));
+  };
+
+  handleRemoveQuestion = (questionType, index) => {
+    this.setState((prevState) => {
+      const questions = [...prevState[questionType]];
+      questions.splice(index, 1);
+      return { [questionType]: questions };
+    });
+  };
+
+  handleInvigilatorChange = (e) => {
+    this.setState({
+      invigilator: e.target.value,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    // Perform further actions with the form data
+    console.log(this.state);
+  };
+
+  render() {
+    const {
+      fillInBlankQuestions,
+      multipleChoiceQuestions,
+      matchTheFollowingQuestions,
+      descriptiveTypeQuestions,
+      invigilator,
+    } = this.state;
+
+    return (
+      <div>
+        <h2>Questions and Answers</h2>
+        <form onSubmit={this.handleSubmit}>
+          <h3>Fill in the Blanks</h3>
+          {fillInBlankQuestions.map((question, index) => (
+            <div key={index}>
+              <div>
+                <label>Question {index + 1}</label>
+                <input
+                  type="text"
+                  name="question"
+                  value={question.question}
+                  onChange={(e) =>
+                    this.handleInputChange(e, "fillInBlankQuestions", index)
+                  }
+                  placeholder="Enter the question"
+                />
+              </div>
+              <div>
+                <label>Answer</label>
+                <input
+                  type="text"
+                  name="answer"
+                  value={question.answer}
+                  onChange={(e) =>
+                    this.handleInputChange(e, "fillInBlankQuestions", index)
+                  }
+                  placeholder="Enter the answer"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() =>
+                  this.handleRemoveQuestion("fillInBlankQuestions", index)
+                }
+              >
+                Remove Question
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => this.handleAddQuestion("fillInBlankQuestions")}
           >
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              1
-            </option>
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              2
-            </option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              3
-            </option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              4
-            </option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              5
-            </option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              6
-            </option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              7
-            </option>
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              8
-            </option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              9
-            </option>{" "}
-            <option
-              style={{ color: "darkblue", fontWeight: "1.5rem" }}
-              value=""
-            >
-              10
-            </option>{" "}
-          </select>
-        </div>
-        <div
-          style={{
-            backgroundColor: "rgb(236,237,243",
-            height: "6.5rem",
-            width: "auto",
-            marginTop: "2rem",
-            position: "relative",
-          }}
-        >
-          <h1
-            style={{
-              fontSize: "1rem",
-              marginLeft: "12rem",
-              paddingTop: "1rem",
-              color: "darkblue",
-              position: "relative",
-            }}
+            Add Question
+          </button>
+
+          <h3>Multiple Choice</h3>
+          {multipleChoiceQuestions.map((question, index) => (
+            <div key={index}>
+              <div>
+                <label>Question {index + 1}</label>
+                <input
+                  type="text"
+                  name="question"
+                  value={question.question}
+                  onChange={(e) =>
+                    this.handleInputChange(e, "multipleChoiceQuestions", index)
+                  }
+                  placeholder="Enter the question"
+                />
+              </div>
+              <div>
+                <label>Options</label>
+                <input
+                  type="text"
+                  name="options"
+                  value={question.options}
+                  onChange={(e) =>
+                    this.handleInputChange(e, "multipleChoiceQuestions", index)
+                  }
+                  placeholder="Enter the options"
+                />
+              </div>
+              <div>
+                <label>Answer</label>
+                <input
+                  type="text"
+                  name="answer"
+                  value={question.answer}
+                  onChange={(e) =>
+                    this.handleInputChange(e, "multipleChoiceQuestions", index)
+                  }
+                  placeholder="Enter the answer"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() =>
+                  this.handleRemoveQuestion("multipleChoiceQuestions", index)
+                }
+              >
+                Remove Question
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => this.handleAddQuestion("multipleChoiceQuestions")}
           >
-            QUESTIONS TO ATTEND
-          </h1>
+            Add Question
+          </button>
+
+          <h3>Match the Following</h3>
+          {matchTheFollowingQuestions.map((question, index) => (
+            <div key={index}>
+              <div>
+                <label>Question {index + 1}</label>
+                <input
+                  type="text"
+                  name="question"
+                  value={question.question}
+                  onChange={(e) =>
+                    this.handleInputChange(
+                      e,
+                      "matchTheFollowingQuestions",
+                      index
+                    )
+                  }
+                  placeholder="Enter the question"
+                />
+              </div>
+              <div>
+                <label>Options</label>
+                <input
+                  type="text"
+                  name="options"
+                  value={question.options}
+                  onChange={(e) =>
+                    this.handleInputChange(
+                      e,
+                      "matchTheFollowingQuestions",
+                      index
+                    )
+                  }
+                  placeholder="Enter the options"
+                />
+              </div>
+              <div>
+                <label>Answer</label>
+                <input
+                  type="text"
+                  name="answer"
+                  value={question.answer}
+                  onChange={(e) =>
+                    this.handleInputChange(
+                      e,
+                      "matchTheFollowingQuestions",
+                      index
+                    )
+                  }
+                  placeholder="Enter the answer"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() =>
+                  this.handleRemoveQuestion("matchTheFollowingQuestions", index)
+                }
+              >
+                Remove Question
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => this.handleAddQuestion("matchTheFollowingQuestions")}
+          >
+            Add Question
+          </button>
+
+          <h3>Descriptive Type</h3>
+          {descriptiveTypeQuestions.map((question, index) => (
+            <div key={index}>
+              <div>
+                <label>Question {index + 1}</label>
+                <input
+                  type="text"
+                  name="question"
+                  value={question.question}
+                  onChange={(e) =>
+                    this.handleInputChange(e, "descriptiveTypeQuestions", index)
+                  }
+                  placeholder="Enter the question"
+                />
+              </div>
+              <div>
+                <label>Answer</label>
+                <input
+                  type="text"
+                  name="answer"
+                  value={question.answer}
+                  onChange={(e) =>
+                    this.handleInputChange(e, "descriptiveTypeQuestions", index)
+                  }
+                  placeholder="Enter the answer"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() =>
+                  this.handleRemoveQuestion("descriptiveTypeQuestions", index)
+                }
+              >
+                Remove Question
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => this.handleAddQuestion("descriptiveTypeQuestions")}
+          >
+            Add Question
+          </button>
+
           <div>
+            <label>Invigilator</label>
             <input
-              style={{
-                width: "20rem",
-                height: "rem",
-                backgroundColor: "transparent",
-                border: "1px solid black",
-                fontSize: "1rem",
-                marginLeft: "12rem",
-                position: "absolute",
-                color: "darkblue",
-              }}
               type="text"
-              placeholder="enter your examination name"
-            ></input>
+              name="invigilator"
+              value={invigilator}
+              onChange={this.handleInvigilatorChange}
+              placeholder="Enter invigilator details"
+            />
           </div>
-        </div>
-        <div
-          style={{
-            backgroundColor: "rgb(236,237,243",
-            height: "6.5rem",
-            width: "auto",
-            marginTop: "2rem",
-            position: "relative",
-          }}
-        >
-          <h1
-            style={{
-              fontSize: "1rem",
-              marginLeft: "12rem",
-              paddingTop: "-10rem",
-              color: "darkblue",
-              position: "relative",
-            }}
-          >
-            ENTER DESCRIPTION
-          </h1>
-          <div>
-            <input
-              style={{
-                width: "20rem",
-                height: "rem",
-                backgroundColor: "transparent",
-                border: "1px solid black",
-                fontSize: "1rem",
-                marginLeft: "12rem",
-                position: "absolute",
-                color: "darkblue",
-              }}
-              type="text"
-              placeholder="enter your examination name"
-            ></input>
-          </div>
-        </div>
-      </div>
 
-      <Link to="/Autosection2">
-        <button
-          style={{
-            width: "6rem",
-            height: "2.5rem",
-            marginTop: "5rem",
-            marginLeft: "70rem",
-            color: "darkblue",
-            fontWeight: "bold",
-            fontSize: "1rem",
-            borderRadius: "0rem",
-          }}
-        >
-          NEXT
-        </button>
-      </Link>
-    </div>
-  );
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    );
+  }
 }
-export default exam;

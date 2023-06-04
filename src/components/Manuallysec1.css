@@ -1,0 +1,158 @@
+/* Default styles */
+
+.section-item1 {
+  font-color: darkblue;
+  font-size: 1rem;
+  margin-left: -21rem;
+  background-color: transparent;
+}
+
+.section-titlep {
+  color: darkblue;
+  font-size: 1rem;
+  margin-left: 6rem;
+  background-color: transparent;
+  margin-top: -1.8rem;
+  font-weight: bold;
+}
+
+.section-label1 {
+  margin-top: 1.7rem;
+  color: darkblue;
+  font-weight: bold;
+}
+
+.text1 {
+  margin-left: 6rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+
+.texta {
+  margin-left: 6rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #b95f5f;
+}
+
+.quest {
+  margin-left: 6rem;
+}
+
+.btn-save {
+  background-color: lightgreen;
+  margin-left: 17rem;
+  margin-top: -12rem;
+  height: 3rem;
+  width: 4rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+  color: white;
+}
+
+.back-btn1 {
+  margin-right: 15rem;
+  margin-top: 4.8rem;
+  color: white;
+  background-color: darkblue;
+  height: 3rem;
+  width: 4rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10rem;
+}
+
+.quest1 {
+  color: darkblue;
+  font-weight: bold;
+  box-shadow: 10px 2px 2px #b99c5f;
+  margin-top: 3rem;
+}
+
+.text2 {
+  margin-left: 3rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+
+.text3 {
+  margin-left: 6rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+
+.text5 {
+  margin-left: 22rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+
+.answer {
+  margin-left: 22rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #b95f5f;
+}
+
+.match1 {
+  margin-left: 6rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+
+.match2 {
+  margin-left: 25rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+
+.match3 {
+  margin-left: 42rem;
+  margin-top: -12rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+
+.desc {
+  margin-left: 6rem;
+  margin-top: 1rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+
+.desc1 {
+  margin-left: 6rem;
+  margin-top: 2rem;
+  box-shadow: 10px 10px 8px #5f7bb9;
+}
+.manu{
+  color:"darkblue";
+}
+/* Responsive styles */
+
+@media screen and (max-width: 768px) {
+  /* Adjust the styles for screens with a maximum width of 768px or less */
+  .section-item1 {
+    margin-left: 0rem;
+  }
+
+  .section-titlep {
+    margin-left: 5rem;
+  }
+
+  .text1,
+  .texta,
+  .quest,
+  .text2,
+  .text3,
+  .text5,
+  .answer,
+  .match1,
+  .match2,
+  .match3,
+  .desc,
+  .desc1 {
+    margin-left: 5rem;
+  }
+
+  .btn-save,
+  .back-btn1 {
+    margin-left: 2rem;
+  }
+}
